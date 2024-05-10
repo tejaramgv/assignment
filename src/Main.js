@@ -27,10 +27,10 @@ function Main() {
   const [category,setCategory]=useState("")
 const mail=localStorage.getItem("mail")
 // fetching data
-
+const url="https://assignment-inoy.onrender.com"
 const fetchData=async()=>{
     try{
-      const res = await axios.post("http://localhost:8081/api/v1/auth/fetchtasks", { mail });
+      const res = await axios.post(`${url}/fetchtasks`, { mail });
 if (res.data.success) {
   let filteredTasks = res.data.tasks;
 
@@ -79,7 +79,7 @@ setFetched(false)
   const checkedTask =async (id) =>{
     setChecked(true)
     try{
-    const res=await axios.post("http://localhost:8081/api/v1/auth/completed",{mail,id})
+    const res=await axios.post(`${url}/completed`,{mail,id})
   if(res.data.success){
     fetchData()
     setChecked(false)
@@ -99,7 +99,7 @@ setFetched(false)
   const addTask = async(id,title,description,priority,dueDate,completed) => {
     setAddtask(true)
     try{
-const res=await axios.post("http://localhost:8081/api/v1/auth/addtask",{mail,id,title,description,priority,dueDate,completed})
+const res=await axios.post(`${url}/addtask`,{mail,id,title,description,priority,dueDate,completed})
 if(res.data.success){
     fetchData()
     setAddtask(false)
@@ -121,7 +121,7 @@ else{
   const deleteTask =async (id) => {
     setChecked(true)
     try{
-        const res=await axios.post("http://localhost:8081/api/v1/auth/delete",{mail,id})
+        const res=await axios.post(`${url}/delete`,{mail,id})
         if(res.data.success){
             fetchData()
             setChecked(false)
@@ -149,7 +149,7 @@ else{
   const saveEditedTask = async(id,title,description,priority,dueDate) => {
   setChecked(true)
     try{
-        const res=await axios.post("http://localhost:8081/api/v1/auth/edit",{mail,id,title,description,priority,dueDate})
+        const res=await axios.post(`${url}/edit`,{mail,id,title,description,priority,dueDate})
         if(res.data.success){
             fetchData()
         toast.success("Edted Successfully!")
