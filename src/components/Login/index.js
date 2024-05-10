@@ -20,7 +20,7 @@ const token=localStorage.getItem("token")
   const handleLogin = async() => {
     setSubmit(true)
     try{
-        const res=await axios.post("https://assignment-inoy.onrender.com/login",{email,password})
+        const res=await axios.post("http://localhost:8081/api/v1/auth/login",{email,password})
         if(res.data.success){
 
             localStorage.setItem("token", res.data.jwt_token);
@@ -71,7 +71,7 @@ const token=localStorage.getItem("token")
           />
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" type="submit" color="primary" >
+          <Button variant="contained" onClick={handleLogin} color="primary" >
           {submit?<ClipLoader color={"white"}/>:<>Login</>}
           </Button>
         </Grid>

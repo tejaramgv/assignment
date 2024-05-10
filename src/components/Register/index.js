@@ -41,7 +41,7 @@ const navigate=useNavigate()
    
     setSubmit(true)
     try{
-const res=await axios.post("https://assignment-inoy.onrender.com/register",{username,email,password})
+const res=await axios.post("http://localhost:8081/api/v1/auth/register",{username,email,password})
 if(res.data.success){
   setSubmit(false)
     navigate('/login')
@@ -71,9 +71,11 @@ catch(e){
       <Typography variant="h4" align="center" gutterBottom>
         Register
       </Typography>
-      <Grid container spacing={2}>
+      <form onSubmit={handleRegister}
+>      <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
+          required
             label="Username"
             fullWidth
             value={username}
@@ -84,6 +86,7 @@ catch(e){
         </Grid>
         <Grid item xs={12}>
           <TextField
+           required
             label="Email"
             fullWidth
             type="email"
@@ -95,6 +98,7 @@ catch(e){
         </Grid>
         <Grid item xs={12}>
           <TextField
+           required
             label="Password"
             fullWidth
             type="password"
@@ -105,11 +109,11 @@ catch(e){
           />
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={handleRegister}>
+          <Button variant="contained" onClick={handleRegister} color="primary" >
             Register
           </Button>
         </Grid>
-      </Grid>
+      </Grid></form>
       <ToastContainer/>
     </Container>
   );

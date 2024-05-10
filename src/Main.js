@@ -27,7 +27,7 @@ function Main() {
   const [category,setCategory]=useState("")
 const mail=localStorage.getItem("mail")
 // fetching data
-const url="https://assignment-inoy.onrender.com"
+const url="http://localhost:8081/api/v1/auth"
 const fetchData=async()=>{
     try{
       const res = await axios.post(`${url}/fetchtasks`, { mail });
